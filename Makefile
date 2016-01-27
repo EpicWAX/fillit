@@ -13,7 +13,8 @@
 NAME = fillit
 CC = gcc
 CFLAG = -c -Wall -Werror -Wextra
-SRC = main.c
+SRC = main.c \
+		ft_check_tetriminos.c
 OBJ = $(SRC:.c=.o)
 HDR = -I./include
 LIBLINK = ./libft

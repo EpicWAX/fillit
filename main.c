@@ -12,18 +12,29 @@
 
 #include "fillit.h"
 
-int		size_files(int i, char **av)
+int		ft_sizeof_file(char *av)
 {
-	int		fd;
 	int		size;
+	int		fd;
 	char	buf;
 
 	size = 0;
-	fd = open(av[i], O_RDONLY);
+	fd = open(av, O_RDONLY);
 	while (read(fd, &buf, 1))
 		size++;
-	close(fd);
 	return (size);
+}
+
+char    *ft_recup_map(int fd, char *av)
+{
+	char	*map;
+	int		file_len;
+	
+	file_len = ft_sizeof_file(av);
+	map = ft_strnew(file_len);
+	while (read(fd, map, file_len))
+		;
+	return (map);
 }
 
 static void		ft_error(void)
@@ -34,13 +45,15 @@ static void		ft_error(void)
 
 int				main(int ac, char **av)
 {
-	int fd;
-
+	int		fd;
+	char	*map;
+	
 	if (ac != 2)
 		ft_error();
-	fd = 0;	
 	if ((fd = open(av[1], O_RDONLY)) < 0)
 		ft_error();
-	ft_putnbrendl(fd);
+	map = ft_recup_map(fd, av[1]);
+	ft_putnbrendl(ft_check_tetriminos(map));
+//	ft_putendl(map);
 	return (0);
 }
