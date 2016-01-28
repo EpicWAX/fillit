@@ -1,43 +1,39 @@
 #include "fillit.h"
+#define S_VAR_INIT i.i = -1; i.nb_tetriminos = -1; i.nb_dieze = 0; i.nb_dot = 0
+
+static int      ft_test_tetristack(char *map, int i)
+{
+    if (map[i - 1] != '#' && map[i + 1] != '#'
+        && map[i - 5] != '#' && map[i + 5] != '#')
+        return (0);
+    return (1);
+}
 
 int     ft_check_tetriminos(char *map)
 {
-    int i;
-    int nb_tetriminos;
-    int nb_dieze;
-    int nb_point;
+    t_check_t   i;
     
-    i = 0;
-    nb_tetriminos = -1;
-    nb_dieze = 0;
-    nb_point = 0;
-    while (map && map[i])
+    S_VAR_INIT;
+    while (map && map[++i.i])
     {
-        //printf("map[i] = %c \n", map[i]);
-        if (map[i] != '.' && map[i] != '#' && map[i] != '\n')
+        if (map[i.i] != '.' && map[i.i] != '#' && map[i.i] != '\n')
             return (0);
-        if (map[i] == '.')
-            nb_point++;
-        if (map[i] == '#')
-        {
-            if (map[i - 1] != '#' && map[i + 1] != '#' && map[i - 5] != '#' &&
-            map[i + 5] != '#')
-                return (0);
-            nb_dieze++;
-        }
-        if (nb_dieze > 12 || nb_dieze > 4)
+        if (map[i.i] == '.')
+            i.nb_dot++;
+        if (map[i.i] == '#' && ft_test_tetristack(map, i.i) == 1)
+            i.nb_dieze++;
+        if (i.nb_dieze > 12 || i.nb_dieze > 4)
             return (0);
-        if (map[i] == '\n' && (map[i + 1] == '\n' || map[i + 1] == '\0'))
+        if (map[i.i] == '\n' && (map[i.i + 1] == '\n' || map[i.i + 1] == '\0'))
         {
-            if (nb_point != 12 || nb_dieze != 4 || map[i - 1] == '\n')
+            if (i.nb_dot != 12 || i.nb_dieze != 4 || map[i.i - 1] == '\n')
                 return (0);
-            nb_dieze = 0;
-            nb_point = 0;
-            if (nb_tetriminos > 26)
+            i.nb_dieze = 0;
+            i.nb_dot = 0;
+            if (i.nb_tetriminos > 26)
                 return (0);
-            nb_tetriminos++;
+            i.nb_tetriminos++;
         }
-        i++;
     }
     return (1);
 }

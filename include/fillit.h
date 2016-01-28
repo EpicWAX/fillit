@@ -17,7 +17,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+typedef struct      s_check_t
+{
+    int             i;
+    int             nb_tetriminos;
+    int             nb_dieze;
+    int             nb_dot;
+}                   t_check_t;
+
 int     ft_check_tetriminos(char *map);
-char    **ft_place_tetriminos(char *map);
+//char    **ft_place_tetriminos(char *map);
 
 #endif

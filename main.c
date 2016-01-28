@@ -8,7 +8,7 @@
 /*   Created: 2016/01/24 15:54:06 by qhusler           #+#    #+#             */
 /*   Updated: 2016/01/25 12:04:29 by qhusler          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+ 
 
 #include "fillit.h"
 
@@ -53,7 +53,8 @@ int				main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) < 0)
 		ft_error();
 	map = ft_recup_map(fd, av[1]);
+	if (ft_check_tetriminos(map) == 0)
+		ft_error();
 	ft_putnbrendl(ft_check_tetriminos(map));
-//	ft_putendl(map);
 	return (0);
 }
