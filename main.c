@@ -6,13 +6,13 @@
 /*   By: qhusler <qhusler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/24 15:54:06 by qhusler           #+#    #+#             */
-/*   Updated: 2016/01/25 12:04:29 by qhusler          ###   ########.fr       */
+/*   Updated: 2016/01/28 18:14:13 by qhusler          ###   ########.fr       */
 /*                                                                            */
- 
+/* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_sizeof_file(char *av)
+int				ft_sizeof_file(char *av)
 {
 	int		size;
 	int		fd;
@@ -25,11 +25,11 @@ int		ft_sizeof_file(char *av)
 	return (size);
 }
 
-char    *ft_recup_map(int fd, char *av)
+char			*ft_recup_map(int fd, char *av)
 {
 	char	*map;
 	int		file_len;
-	
+
 	file_len = ft_sizeof_file(av);
 	map = ft_strnew(file_len);
 	while (read(fd, map, file_len))
@@ -47,7 +47,7 @@ int				main(int ac, char **av)
 {
 	int		fd;
 	char	*map;
-	
+
 	if (ac != 2)
 		ft_error();
 	if ((fd = open(av[1], O_RDONLY)) < 0)
