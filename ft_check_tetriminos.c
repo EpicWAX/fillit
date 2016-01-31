@@ -38,14 +38,15 @@ int				ft_check_tetriminos(char *map)
 			return (0);
 		if (map[i.i] == '\n' && (map[i.i + 1] == '\n' || map[i.i + 1] == '\0'))
 		{
-			if (i.nb_dot != 12 || i.nb_dieze != 4 || map[i.i - 1] == '\n')
+			if (i.nb_dot != 12 || i.nb_dieze != 4 || map[i.i - 1] == '\n' || 
+				i.nb_tetriminos > 26)
 				return (0);
 			i.nb_dieze = 0;
 			i.nb_dot = 0;
-			if (i.nb_tetriminos > 26)
-				return (0);
 			i.nb_tetriminos++;
 		}
 	}
+	if (i.nb_tetriminos < 1)
+		return (0);
 	return (1);
 }
