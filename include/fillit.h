@@ -25,7 +25,8 @@ typedef struct		s_check_t
 	int				nb_dot;
 }					t_check_t;
 
+int				ft_pre_test(char *map);
 int					ft_check_tetriminos(char *map);
-//char    **ft_place_tetriminos(char *map);
+int					*ft_place_tetriminos(char *map);
 
 #endif

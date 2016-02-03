@@ -37,7 +37,7 @@ clean:
 
 fclean: clean
 	@echo "===>deleting lib and fillit."
-	@make fclean -C $(LIBLINK)
+#	@make fclean -C $(LIBLINK)
 	@$(RM) $(NAME)
 
 re: fclean all coffee

@@ -53,8 +53,8 @@ int				main(int ac, char **av)
 	if ((fd = open(av[1], O_RDONLY)) < 0)
 		ft_error();
 	map = ft_recup_map(fd, av[1]);
-	if (ft_check_tetriminos(map) == 0)
-		ft_error();
-	ft_putnbrendl(ft_check_tetriminos(map));
+	//if (ft_check_tetriminos(map) == 0)
+	//	ft_error();
+	ft_putnbrendl(ft_pre_test(map));
 	return (0);
 }

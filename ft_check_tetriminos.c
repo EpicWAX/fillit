@@ -13,6 +13,33 @@
 #include "fillit.h"
 #define S_VAR_INIT i.i = -1; i.nb_tetriminos = -1; i.nb_dieze = 0; i.nb_dot = 0;
 
+int				ft_pre_test(char *map)
+{
+	int i;
+	int j;
+	int size;
+	
+	i = 0;
+	j = i + (5 * 4);
+	size = ft_strlen(map);
+	while (i != size)
+	{
+		if (i == size - 4 && map[size] == '\0')
+			return (1);
+		if (map[i + 4] != '\n')
+			return (0);
+		i += 4;
+		if (i == j)
+		{
+			ft_putendl("WSH");
+			if (map[i + 1] != '\n')
+				return (0);
+			i += j + 1;
+		}
+	}
+	return (1);
+}
+
 static int		ft_test_tetristack(char *map, int i)
 {
 	if (map[i - 1] != '#' && map[i + 1] != '#'
@@ -46,7 +73,7 @@ int				ft_check_tetriminos(char *map)
 			i.nb_tetriminos++;
 		}
 	}
-	if (i.nb_tetriminos < 1)
+	if (i.nb_tetriminos < 0)
 		return (0);
 	return (1);
 }
