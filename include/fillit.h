@@ -35,7 +35,7 @@ typedef	struct		s_tetris
 	char			piece[21];
 }					t_tetris;
 
-int				ft_pre_test(char *map);
+int					ft_pre_test(char *map);
 int					ft_check_tetriminos(char *map);
 int					*ft_place_tetriminos(char *map);
 

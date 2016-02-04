@@ -25,16 +25,16 @@ int				ft_sizeof_file(char *av)
 	return (size);
 }
 
-char			*ft_recup_map(int fd, char *av)
+char			*ft_recup_input(int fd, char *av)
 {
-	char	*map;
+	char	*input;
 	int		file_len;
 
 	file_len = ft_sizeof_file(av);
-	map = ft_strnew(file_len);
-	while (read(fd, map, file_len))
+	input = ft_strnew(file_len);
+	while (read(fd, input, file_len))
 		;
-	return (map);
+	return (input);
 }
 
 static void		ft_error(void)
@@ -45,16 +45,19 @@ static void		ft_error(void)
 
 int				main(int ac, char **av)
 {
-	int		fd;
-	char	*map;
 
+	int		fd;
+	char	*input;
+	//char	*map;
+
+	//map = "#\0";
 	if (ac != 2)
 		ft_error();
 	if ((fd = open(av[1], O_RDONLY)) < 0)
 		ft_error();
-	map = ft_recup_map(fd, av[1]);
-	//if (ft_check_tetriminos(map) == 0)
-	//	ft_error();
-	ft_putnbrendl(ft_pre_test(map));
+	input = ft_recup_input(fd, av[1]);
+	if (ft_check_tetriminos(input) == 0)
+		ft_error();
+	ft_putnbrendl(ft_pre_test(input));
 	return (0);
 }
