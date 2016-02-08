@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#define S_VAR_INIT i.i = -1; i.nb_tetriminos = -1; i.nb_dieze = 0; i.nb_dot = 0;
+#define S_VAR_INIT i.i = -1; i.nb_tetriminos = 0; i.nb_dieze = 0; i.nb_dot = 0;
 
 int				ft_pre_test(char *map)
 {
@@ -54,8 +54,36 @@ static int		ft_test_tetristack(char *map, int i)
 		return (2);
 	return (1);
 }
+/*
+i = 0;
+num = 0;
+while (i < 20)
+{
+	num += (1 << i) * (tet[i] == '#');
+	i += 1 + (i % 4);
+}
+...#
+...#
+..##
+....
 
-int				ft_check_tetriminos(char *map)
+0001 
+0001 
+0011 
+0000
+
+0011
+0011
+0000
+0000
+
+0001
+0001
+0000
+0000
+*/
+
+int				ft_check_tetriminos(char *map, int *nb_tetriminos)
 {
 	t_check_t	i;
 	int		nb_x2;
@@ -89,7 +117,9 @@ int				ft_check_tetriminos(char *map)
 			nb_x2 = 0;
 		}
 	}
-	if (i.nb_tetriminos < 0)
+	if ((i.nb_tetriminos) < 1)
 		return (0);
+		printf("nb_tetriminos = %i\n", i.nb_tetriminos);
+	*nb_tetriminos = i.nb_tetriminos;
 	return (1);
 }

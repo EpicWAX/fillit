@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillih.h                                           :+:      :+:    :+:   */
+/*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhusler <qhusler@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -25,18 +25,22 @@ typedef struct		s_check_t
 	int				nb_dot;
 }					t_check_t;
 
-typedef	struct		s_tetris
+typedef struct 	s_tetris
 {
-	int				i;
-	int				pos1;
-	int				pos2;
-	int				pos3;
-	int				pos4;
-	char			piece[21];
-}					t_tetris;
+	int 		position;
+	int 		size_x;
+	int 		size_y;
+	char		*piece;
+}				t_tetris;
 
-int					ft_pre_test(char *map);
-int					ft_check_tetriminos(char *map);
-int					*ft_place_tetriminos(char *map);
+t_tetris		*p;
+int				ft_pre_test(char *map);
+int				ft_check_tetriminos(char *map, int *nb_tetriminos);
+char			*ft_solve(char *map);
+int				*ft_place_tetriminos(char *map);
+int     		ft_put_size_x1(int ps[5]);
+int     		ft_put_size_y1(int ps[5]);
+char    		*ft_put_piece1(int ps[5]);
+void			ft_init_tetris(int nb_tetriminos, char *input);
 
 #endif

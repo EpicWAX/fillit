@@ -14,7 +14,12 @@ NAME = fillit
 CC = gcc
 CFLAG = -c -Wall -Werror -Wextra
 SRC = main.c \
-		ft_check_tetriminos.c
+		ft_check_tetriminos.c 	\
+		ft_init_tetris.c 		\
+		ft_put_piece.c 			\
+		ft_put_size.c			\
+		ft_solve.c				
+		
 OBJ = $(SRC:.c=.o)
 HDR = -I./include
 LIBLINK = ./libft

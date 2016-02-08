@@ -46,18 +46,25 @@ static void		ft_error(void)
 int				main(int ac, char **av)
 {
 
-	int		fd;
-	char	*input;
-	//char	*map;
+	int			fd;
+	char		*input;
+	char		*map;
+	int			nb_tetriminos;
 
-	//map = "#\0";
+	map = ft_strdup("..\n..\0");
 	if (ac != 2)
 		ft_error();
 	if ((fd = open(av[1], O_RDONLY)) < 0)
 		ft_error();
 	input = ft_recup_input(fd, av[1]);
-	if (ft_check_tetriminos(input) == 0)
+	close(fd);
+	if (ft_check_tetriminos(input, &nb_tetriminos) == 0)
 		ft_error();
-	ft_putnbrendl(ft_pre_test(input));
+	printf("check OK\n---------------------------------------------------------\n");
+	ft_init_tetris(nb_tetriminos, input);
+	printf("Initialisation OK\n--------------------------------------------------------------------\n");
+	map = ft_solve(map);
+	printf("map solve\n--------------------------------------------------------\n");
+	ft_putendl(map);
 	return (0);
 }
